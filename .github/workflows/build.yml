@@ -27,7 +27,7 @@ jobs:
       latest-version: ${{ steps.version.outputs.value }}
     steps:
       - name: Install Bowtie
-        uses: bowtie-json-schema/bowtie@5e76acdd1a7e5566fde40e5856b006df0fc1daf8 # main
+        uses: bowtie-json-schema/bowtie@41ed15e4bdcad3c87b5762e140848c37b5355838 # main
 
       - name: Compute implementation name
         id: impl
