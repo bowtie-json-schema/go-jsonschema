@@ -107,6 +107,22 @@ func main() {
 				panic("No case!")
 			}
 
+			if output, ok := request["output"].(string); ok && output != "flag" {
+				var results []map[string]interface{}
+				for range testCase["tests"].([]interface{}) {
+					results = append(results, map[string]interface{}{
+						"skipped": true,
+						"message": fmt.Sprintf("unsupported output format %s", output),
+					})
+				}
+				data := map[string]interface{}{
+					"seq":     request["seq"],
+					"results": results,
+				}
+				printJSON(data)
+				break
+			}
+
 			compiler := jsonschema.NewCompiler()
 			if draft != nil {
 				compiler.DefaultDraft(draft)
